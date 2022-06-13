@@ -3,7 +3,7 @@ const displayText =  "Escolha uma opção\n"+
                     "1. Pesquisar um drink pelo nome\n"+
                     "2. Lista todos os drinks pela inicial\n"+
                     "3. Lista drinks pelo nome do ingrediente\n"+
-                    "4. Pesquisa um drink aleatório\n"+
+                    "4. Pesquisa Receita para um drink aleatório\n"+
                     "5. Filtra drinks alcoolicos ou não alcoolicos\n"+
                     "6. Mostra categoria e filtra categoria\n"+
                     "7. Sair do Programa\n"
@@ -12,7 +12,7 @@ console.log("passou")
 while(code!=7){
     switch(code){
         case 1:
-            randomCocktailRecipe()
+            
             break;
         case 2:
 
@@ -21,13 +21,13 @@ while(code!=7){
 
             break;
         case 4:
-
+            randomCocktailRecipe()
             break;
         case 5:
 
             break;
         case 6:  
-        
+
             break;
     }
     code = Number(prompt(displayText))
@@ -40,6 +40,7 @@ async function randomCocktailRecipe(){
         const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
             const response = await fetch(url)
                             .then((res)=>(res.json()))
+                            console.log(response.drinks[0])
         return response.drinks[0]
     } 
  
@@ -112,9 +113,9 @@ async function randomCocktailRecipe(){
             } 
         }
         setIngredientsAndMeasures()
-        let text = ""
+        let text = `Receita para o drink ${drink.strDrink}:\n`
         for(let i in ingredients){
-            text +=
+            text +=  `${measures[i]} de ${ingredients[i]}\n`
         }
     }
     const res = await randomCocktailRequest()
