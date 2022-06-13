@@ -6,8 +6,8 @@ async function randomCocktailRecipe(){
             const response = await fetch(url)
                             .then((res)=>(res.json()))
         return response.drinks[0]
-    }
-    
+    } 
+
     function recipe(drink){
         const name = drink.strDrink
         const img = strDrinkThumb
