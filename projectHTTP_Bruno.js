@@ -1,40 +1,75 @@
-
-const displayText =  "Escolha uma opção\n"+
-                    "1. Pesquisar um drink pelo nome\n"+
-                    "2. Lista todos os drinks pela inicial\n"+
-                    "3. Lista drinks pelo nome do ingrediente\n"+
-                    "4. Pesquisa Receita para um drink aleatório\n"+
-                    "5. Filtra drinks alcoolicos ou não alcoolicos\n"+
-                    "6. Mostra categoria e filtra categoria\n"+
-                    "7. Sair do Programa\n"
-let code = Number(prompt(displayText))
-console.log("passou")
-while(code!=7){
-    switch(code){
-        case 1:
+ const recebeNomePesquisaCockatil = () => {
+    let nome = prompt('Insira o nome do cocktail que deseja buscar')
+    const pesquisaPeloNomeCocktail = (nome) => {
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${nome}`)
+        .then(response => {
+            return response.json()
+        })
+        .then(responseData => {
+            console.log(...responseData.drinks)
             
-            break;
-        case 2:
-
-            break;
-        case 3:
-
-            break;
-        case 4:
-            alert( await randomCocktailRecipe())
-            code = Number(prompt(displayText))
-            break;
-        case 5:
-
-            break;
-        case 6:  
-
-            break;
+        })
     }
-    
+    pesquisaPeloNomeCocktail(nome)
+}  
+
+ const listaCategorias = () => {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`)
+    .then(response => {
+        return response.json()
+    })
+    .then(responseData => {
+        console.log(responseData)
+    })
 }
 
+ const recebeListaPorCategoria = () => {
+    let cat =  prompt('Insira a categoria')
+    const listaPorCategorias = (cat) => {
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${cat}`)
+        .then(response => {
+            return response.json()
+        })
+        .then(responseData => {
+            console.log(responseData)
+        })
+    }
+    listaPorCategorias(cat)
+}
 
+ const listaNaoAlcoolicos = () => {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`)
+    .then(response => {
+        return response.json()
+    })
+    .then(responseData => {
+        console.log(responseData)
+    })
+}
+
+ const listaAlcoolicos = () => {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`)
+    .then(response => {
+        return response.json()
+    })
+    .then(responseData => {
+        console.log(responseData)
+    })
+}
+
+ const recebeProcuraIngrediente = () => {
+    let ing =  prompt('Insira um ingrediente')
+    const procuraIngrediente = (ing) => {
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${ing}`)
+        .then(response => {
+            return response.json()
+        })
+        .then(responseData => {
+            console.log(responseData)
+        })
+    }
+    procuraIngrediente(ing)
+}
 
 async function randomCocktailRecipe(){
     async function randomCocktailRequest(){   
@@ -124,4 +159,48 @@ async function randomCocktailRecipe(){
     const text = recipe(res)
     console.log(text)
     return text
+}
+
+const displayText =  "Escolha uma opção\n"+
+                    "1. Pesquisar um drink pelo nome\n"+
+                    "2. Lista todos os drinks pela inicial\n"+
+                    "3. Pesquisa informações de um ingrediente\n"+
+                    "4. Pesquisa Receita para um drink aleatório\n"+
+                    "5. Filtra drinks não alcoolicos\n"+
+                    "6. Filtra drinks alcoolicos\n"+
+                    "7. Mostra categoria e filtra categoria\n"+
+                    "8. Sair do Programa\n"
+let code = Number(prompt(displayText))
+while(code!=8){
+    switch(code){
+        case 1:
+            recebeNomePesquisaCockatil()
+            alert("Resposta está no console.log")
+            break;
+        case 2:
+            listaCategorias()
+            alert("Resposta está no console.log")
+            break;
+        case 3:
+            recebeListaPorCategoria()
+            alert("Resposta está no console.log")
+            break;
+        case 4:
+            alert( await randomCocktailRecipe())    
+            break;
+        case 5:
+            listaNaoAlcoolicos()
+            alert("Resposta está no console.log")
+            break;
+        case 6:  
+            listaAlcoolicos()
+            alert("Resposta está no console.log")
+            break;
+        case 7: 
+            recebeProcuraIngrediente()
+            alert("Resposta está no console.log")
+            break;
+    }
+    code = Number(prompt(displayText))
+    
 }
