@@ -19,7 +19,7 @@
         return response.json()
     })
     .then(responseData => {
-        console.log(responseData)
+        console.log(...responseData.drinks)
     })
 }
 
@@ -31,7 +31,7 @@
             return response.json()
         })
         .then(responseData => {
-            console.log(responseData)
+            console.log(...responseData.drinks)
         })
     }
     listaPorCategorias(cat)
@@ -43,7 +43,7 @@
         return response.json()
     })
     .then(responseData => {
-        console.log(responseData)
+        console.log(...responseData.drinks)
     })
 }
 
@@ -53,7 +53,7 @@
         return response.json()
     })
     .then(responseData => {
-        console.log(responseData)
+        console.log(...responseData.drinks)
     })
 }
 
@@ -65,7 +65,7 @@
             return response.json()
         })
         .then(responseData => {
-            console.log(responseData)
+            console.log(...responseData.ingredients)
         })
     }
     procuraIngrediente(ing)
@@ -163,12 +163,12 @@ async function randomCocktailRecipe(){
 
 const displayText =  "Escolha uma opção\n"+
                     "1. Pesquisar um drink pelo nome\n"+
-                    "2. Lista todos os drinks pela inicial\n"+
-                    "3. Pesquisa informações de um ingrediente\n"+
-                    "4. Pesquisa Receita para um drink aleatório\n"+
+                    "2. Lista todas as categorias\n"+
+                    "3. Filtra categoria\n"+
+                    "4. Pesquisa receita para um drink aleatório\n"+
                     "5. Filtra drinks não alcoolicos\n"+
                     "6. Filtra drinks alcoolicos\n"+
-                    "7. Mostra categoria e filtra categoria\n"+
+                    "7. Pesquisa informações de um ingrediente\n"+
                     "8. Sair do Programa\n"
 let code = Number(prompt(displayText))
 while(code!=8){
