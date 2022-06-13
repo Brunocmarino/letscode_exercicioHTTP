@@ -21,7 +21,8 @@ while(code!=7){
 
             break;
         case 4:
-            randomCocktailRecipe()
+            alert( await randomCocktailRecipe())
+            code = Number(prompt(displayText))
             break;
         case 5:
 
@@ -30,7 +31,7 @@ while(code!=7){
 
             break;
     }
-    code = Number(prompt(displayText))
+    
 }
 
 
@@ -47,7 +48,7 @@ async function randomCocktailRecipe(){
     function recipe(drink){
     
         const name = drink.strDrink
-        const img = strDrinkThumb
+        const img = drink.strDrinkThumb
         const ingredients = []
         const measures = []
         const setIngredientsAndMeasures = () => {
@@ -115,9 +116,12 @@ async function randomCocktailRecipe(){
         setIngredientsAndMeasures()
         let text = `Receita para o drink ${drink.strDrink}:\n`
         for(let i in ingredients){
-            text +=  `${measures[i]} de ${ingredients[i]}\n`
-        }
+            text +=  `${measures[i]?`${measures[i]} de`:""} ${ingredients[i]}\n`
+        }4
+        return text
     }
     const res = await randomCocktailRequest()
-    console.log(res)
+    const text = recipe(res)
+    console.log(text)
+    return text
 }
