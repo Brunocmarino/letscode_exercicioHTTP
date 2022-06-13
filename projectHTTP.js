@@ -7,8 +7,9 @@ async function randomCocktailRecipe(){
                             .then((res)=>(res.json()))
         return response.drinks[0]
     } 
-
+ 
     function recipe(drink){
+        
         const name = drink.strDrink
         const img = strDrinkThumb
         const srt = drink.strIngredient1
